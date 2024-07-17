@@ -6,12 +6,16 @@ import Draggable from '../components/Draggable'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useSharedValue } from 'react-native-reanimated'
 
-const arr = new Array(25).fill('').map((_, i) => i + 1)
+const arr = new Array(25).fill('').map((_, i) => i )
 
 const App = () => {
     const positions = useSharedValue(
-        Object.assign({}, ...arr.map(item => ({[item]: item}))),
-    )
+        arr.reduce((acc, item) => {
+            acc[item] = item;
+            return acc;
+        }, {})
+         
+    );
     console.log(positions)
   return (
     <SafeAreaProvider>
