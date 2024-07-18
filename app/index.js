@@ -1,54 +1,19 @@
-import { View, Text, StyleSheet, Dimensions } from 'react-native'
+import { View, Text } from 'react-native'
 import React from 'react'
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
-import Box from '../components/Box'
-import Draggable from '../components/Draggable'
-import { GestureHandlerRootView } from 'react-native-gesture-handler'
-import { useSharedValue } from 'react-native-reanimated'
-
-const arr = new Array(25).fill('').map((_, i) => i )
-
+import { NavigationContainer } from '@react-navigation/native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import PuzzleScreen from './PuzzleScreen'
+import HomeScreen from './HomeScreen'
+import ImageUpload from '../components/ImageUpload'
+const Tab = createBottomTabNavigator()
 const App = () => {
-    const positions = useSharedValue(
-        arr.reduce((acc, item) => {
-            acc[item] = item;
-            return acc;
-        }, {})
-         
-    );
-    console.log(positions)
   return (
-    <SafeAreaProvider>
-        <SafeAreaView style={styles.wrap}>
-            <GestureHandlerRootView style={styles.wrap}>
-
-                <View style={styles.container}>
-                    {arr.map((item) => (
-                        <Draggable key={item} positions={positions} id={item}>
-                            <Box key={item} count={item}/>
-                            
-                        </Draggable> 
-                    ))}
-                </View>
-            </GestureHandlerRootView>
-        </SafeAreaView>
-    </SafeAreaProvider>
-
+    <Tab.Navigator screenOptions={{headerShown: false}}>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Puzzle" component={PuzzleScreen} />
+        <Tab.Screen name="ImageUpload" component={ImageUpload} />
+    </Tab.Navigator>
   )
 }
 
 export default App
-
-const styles = StyleSheet.create({
-    container: {
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        padding: 16,
-    },
-    wrap: {
-        flex: 1,
-        backgroundColor: 'white',
-    },
-
-  });

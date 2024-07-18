@@ -33,12 +33,13 @@ const Draggable = ({children, positions, id}) => {
     const contextY = useSharedValue(0);
     const isGestureActive = useSharedValue(false);
 
+    // Update the positon of box based on the dependency change - positions.value[id]
     useAnimatedReaction(
         () => positions.value[id],
-        newOrder => {
-            const newPosition = getCoordinates(newOrder);
-            translateX.value = withSpring(newPosition.x);
-            translateY.value = withSpring(newPosition.y);
+        newIndex => {
+            const newCoordinates = getCoordinates(newIndex); // calculate the new position from the newIndex
+            translateX.value = withSpring(newCoordinates.x);
+            translateY.value = withSpring(newCoordinates.y);
         }
     )
   
@@ -57,7 +58,7 @@ const Draggable = ({children, positions, id}) => {
             if(oldIndex !== newIndex){
                 const idToSwap = Object.keys(positions.value).find(key => positions.value[key] === newIndex);
                 if(idToSwap !== undefined){
-                    const newPositions = { ...positions.value };
+                    const newPositions = { ...positions.value }; // copy of the positions array
                     newPositions[id] = newIndex;
                     newPositions[idToSwap] = oldIndex;
                     positions.value = newPositions;
@@ -102,10 +103,3 @@ const Draggable = ({children, positions, id}) => {
 }
 
 export default Draggable
-const styles = StyleSheet.create({
-    // container:{
-    //     display: 'flex',
-    //     justifyContent: 'center',
-    //     alignItems: 'center',
-    // }
-})
