@@ -5,14 +5,14 @@ import Box from '../components/Box'
 import Draggable from '../components/Draggable'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useSharedValue } from 'react-native-reanimated'
-
+import Icon from 'react-native-vector-icons/Ionicons'
 const arr = new Array(25).fill('').map((_, i) => i )
 const COL = 5;
 const MARGIN = 8;
 const SIZE = Dimensions.get('window').width / COL - MARGIN;
 const FULL_SIZE = Dimensions.get('window').width;   
 
-const Puzzle = ({route}) => {
+const Puzzle = ({route, navigation}) => {
     const [blocks, setBlocks] = useState([]);
     const [hint, setHint] = useState(false);
     // TODO: delete this later on
@@ -60,12 +60,16 @@ const Puzzle = ({route}) => {
   }
   return (
     <SafeAreaProvider>
-        <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 15}}>
-            <Text style={{fontSize: 24, fontWeight: 'bold', margin: 20}}>
+    <SafeAreaView >
+
+            <Text style={{fontSize: 24, fontWeight: 'bold', margin: 30, textAlign: 'center'}}>
                 Puzzle Time!!
             </Text>
+            <TouchableOpacity style={styles.goBackBtn} onPress={() => navigation.navigate('Profile')}>
+                <Icon name="arrow-back" size={24} color="#000" />
+            </TouchableOpacity>
 
-        </View>
+
         <View style={{display: 'flex', justifyContent:'flex-end', alignItems:'center', gap: 10}}>
             <Image 
                 source={{uri: uri}}
@@ -89,6 +93,7 @@ const Puzzle = ({route}) => {
 
             </GestureHandlerRootView>
         </SafeAreaView>
+    </SafeAreaView>
     </SafeAreaProvider>
 
   )
@@ -98,6 +103,7 @@ export default Puzzle
 
 const styles = StyleSheet.create({
     container: {
+
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
@@ -106,4 +112,14 @@ const styles = StyleSheet.create({
     wrap: {
         flex: 1,
     },
+    goBackBtn: {
+        position: 'absolute',
+        top: 20,
+        left: -160,
+        padding: 10,
+        backgroundColor: 'lightgrey',
+        borderRadius: 50,
+        marginHorizontal: 175
+
+    }
 });

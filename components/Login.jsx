@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import { TextInput } from 'react-native-gesture-handler'
 import {auth} from '../services/config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-
+import Icon from 'react-native-vector-icons/Ionicons';
 const Login = ({navigation}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -25,10 +25,14 @@ const Login = ({navigation}) => {
     }
     return (
         <View>
+            <TouchableOpacity style={styles.goBackBtn} onPress={() => navigation.navigate('Home')}>
+                <Icon name="arrow-back" size={24} color="#000" />
+            </TouchableOpacity>
             <Text style={styles.title}>Login Page</Text>
 
             <View style={styles.floralImg}>
                 <Image source={require(`../assets/images/login_puzzle.jpeg`)} style={{width: 320, height: 320, borderRadius: 200}} />
+            
 
             </View>
             <TextInput style={styles.input} placeholder="Email" onChangeText={setEmail}/>
@@ -47,6 +51,7 @@ const Login = ({navigation}) => {
                 </View>
 
             </View>
+
             
         </View>
   )
@@ -101,5 +106,13 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         textAlign: 'center',
         color: 'white'
-    }
+    },
+    goBackBtn: {
+        position: 'absolute',
+        top: 20,
+        left: 20,
+        padding: 10,
+        backgroundColor: '#EADFB8',
+        borderRadius: 50,
+    },
 })

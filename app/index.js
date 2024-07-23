@@ -29,8 +29,7 @@ function MainTabs() {
     <Tab.Navigator screenOptions={{headerShown: false}}>
       <Tab.Screen name="Home" component={HomeScreen} />
       {user && <>
-        <Tab.Screen name="ImageUpload" component={ImageUpload} />
-        <Tab.Screen name="Puzzle" component={PuzzleScreen} />
+        <Tab.Screen name="Image Upload" component={ImageUpload} />
         <Tab.Screen name="Profile" component={ProfileScreen} />
       </>}
     </Tab.Navigator>
@@ -46,6 +45,7 @@ const App = () => {
         <Stack.Screen name="MainTabs" component={MainTabs} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="Puzzle" component={PuzzleScreen} />
 
     </Stack.Navigator>
   )

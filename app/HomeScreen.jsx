@@ -27,21 +27,26 @@ const HomeScreen = ({navigation}) => {
           style={{width: 390, height: 350, marginTop: 40, marginBottom: 20}}
 
         />
-        {/* TODO: add the user conditional check */}
 
-        <View style={{flexDirection: 'column', justifyContent: 'center', width: 300, alignItems: 'center', gap: 10}}>
-          <TouchableOpacity style={{backgroundColor: '#e6ccff', padding: 15, alignSelf: 'center', borderRadius: 10}} onPress={() => navigation.navigate('Signup')}>
-            <Text style={{fontWeight: 'bold', fontSize: 16}}>Get Started</Text>
-          </TouchableOpacity>
-
-          <View style={{display:'flex', justifyContent:'center', alignItems: 'center', flexDirection:'row', gap: 7}}>
-            <Text style={{fontSize: 14}}>Already have an account?</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>Log in</Text>
+        {!user ? 
+          <View style={{flexDirection: 'column', justifyContent: 'center', width: 300, alignItems: 'center', gap: 10}}>
+            <TouchableOpacity style={{backgroundColor: '#e6ccff', padding: 15, alignSelf: 'center', borderRadius: 10}} onPress={() => navigation.navigate('Signup')}>
+              <Text style={{fontWeight: 'bold', fontSize: 16}}>Get Started</Text>
             </TouchableOpacity>
-          </View>
 
-        </View>
+            <View style={{display:'flex', justifyContent:'center', alignItems: 'center', flexDirection:'row', gap: 7}}>
+              <Text style={{fontSize: 14}}>Already have an account?</Text>
+              <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                <Text style={{fontSize: 14, fontWeight: 'bold'}}>Log in</Text>
+              </TouchableOpacity>
+            </View>
+
+          </View>
+          :
+          <></>
+        
+      }
+
 
 
 
@@ -59,11 +64,14 @@ const styles = StyleSheet.create({
     paragraph: {
         fontSize: 14,
         textAlign: 'center',
+        marginTop: 30,
+        lineHeight: 20
   
     },
     container: {
-      display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      flex: 1,
+      backgroundColor: 'white',
     }
 })

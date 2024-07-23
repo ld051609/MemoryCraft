@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    backgroundColor:'white'
   },
   safeArea: {
     width: '100%',
@@ -150,10 +151,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
+    padding: 10,
+    alignSelf: 'center',
   },
   profileImageContainer: {
-    marginVertical: 20,
+    marginVertical: 5,
     padding: 20,
     overflow: 'hidden',
     alignItems: 'center',
@@ -171,7 +173,7 @@ const styles = StyleSheet.create({
 
   },
   userInfoContainer: {
-    backgroundColor: '#9966ff',
+    backgroundColor: '#6e48eb',
     borderRadius: 30,
     padding: 16,
     width: '100%',

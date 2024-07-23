@@ -1,8 +1,9 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, Alert } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, Alert, SafeAreaView } from 'react-native'
 import React, {useState} from 'react'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import {auth, db} from '../services/config';
 import {doc, setDoc, Timestamp} from "firebase/firestore"
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Signup = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -43,7 +44,10 @@ const Signup = ({navigation}) => {
 
 
   return (
-    <View>
+    <SafeAreaView>
+          <TouchableOpacity style={styles.goBackBtn} onPress={() => navigation.navigate('Home')}>
+              <Icon name="arrow-back" size={24} color="#000" />
+          </TouchableOpacity>
           <Text style={styles.title}>Signup Page</Text>
 
           <View style={styles.floralImg}>
@@ -69,7 +73,7 @@ const Signup = ({navigation}) => {
 
           </View>
           
-      </View>
+      </SafeAreaView>
   )
 }
 
@@ -122,5 +126,13 @@ const styles = StyleSheet.create({
       fontWeight: '600',
       textAlign: 'center',
       color: 'white'
-  }
+  },
+  goBackBtn: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
+    padding: 10,
+    backgroundColor: '#EADFB8',
+    borderRadius: 50,
+},
 })
