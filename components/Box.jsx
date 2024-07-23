@@ -6,7 +6,7 @@ const MARGIN = 8;
 const SIZE = Dimensions.get('window').width / COL - MARGIN;
 const FULL_SIZE = Dimensions.get('window').width;   
 
-const Box = ({ count }) => {
+const Box = ({ count,hint }) => {
   return (
     <View style={styles.container}>
       {}
@@ -22,7 +22,7 @@ const Box = ({ count }) => {
         }}
    
       />
-      <Text style={styles.number}>{count.number}</Text>
+      <Text style={[styles.number, {color: hint ? 'black' : 'transparent'}]}>{count.number}</Text>
     </View>
     
   );
@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 4,
     right: 4,
-    color: 'black',
     fontSize: 12,
   },
 });
