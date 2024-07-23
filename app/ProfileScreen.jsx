@@ -5,7 +5,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import * as ImagePicker from 'expo-image-picker';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const ProfileScreen = ({navigation}) => {
+const ProfileScreen = ({navigation, route}) => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState(null);
   const [userUid, setUserUid] = useState(null);
@@ -14,6 +14,7 @@ const ProfileScreen = ({navigation}) => {
   const [imageFiles, setImageFiles] = useState([]);
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
+  // const [newImage, setNewImage] = useState(route.params.downloadUrl);
 
   function onAuthStateChanged(user) {
     setUser(user);
@@ -30,9 +31,12 @@ const ProfileScreen = ({navigation}) => {
     if (userUid) {
       getUserData();
     }
-  }, [userUid]);
+  }, [userUid, imageFiles]);
+
+  
 
   if (initializing) return null;
+  
 
   async function getUserData() {
     try {
@@ -60,6 +64,7 @@ const ProfileScreen = ({navigation}) => {
       setError("Failed to fetch user data.");
     }
   }
+  
 
   const uploadProfileImage = async () => {
     try {
@@ -208,7 +213,8 @@ const styles = StyleSheet.create({
   gallery: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 10,
+    gap: 40,
+
   },
   galleryImage: {
     width: 150,

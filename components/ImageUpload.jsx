@@ -65,7 +65,7 @@ const ImageUpload = ({ navigation }) => {
                 });
                 Alert.alert("Image uploaded to the database successfully!");
                 // redirect to profile page
-                navigation.navigate('Profile');
+                // navigation.navigate('Profile', { downloadURL });
             } else {
                 setError("Failed to upload image. Please try again.");
                 Alert.alert("Failed to upload image. Please try again.");
