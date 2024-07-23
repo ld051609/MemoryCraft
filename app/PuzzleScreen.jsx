@@ -12,11 +12,11 @@ const MARGIN = 8;
 const SIZE = Dimensions.get('window').width / COL - MARGIN;
 const FULL_SIZE = Dimensions.get('window').width;   
 
-const Puzzle = () => {
+const Puzzle = ({route}) => {
     const [blocks, setBlocks] = useState([]);
     const [hint, setHint] = useState(false);
     // TODO: delete this later on
-    const [uri, setUri] = useState("https://i.pinimg.com/736x/ef/57/03/ef570313df3a9b267cbee1a222962385.jpg");
+    const [uri, setUri] = useState(null);
     // Get the positions of the blocks
     const positions = useSharedValue(
         arr.reduce((acc, item) => {
@@ -27,12 +27,14 @@ const Puzzle = () => {
     );
 
     useEffect(() => {
+        setUri(route.params.image);
         createPuzzleBlocks()
         
     },[])
 
     const createPuzzleBlocks = () => {
-        const uri = "https://i.pinimg.com/736x/ef/57/03/ef570313df3a9b267cbee1a222962385.jpg";
+        const uri = route.params.image;
+        console.log(`Image prop passed: ${route.params.image}`);
         Image.getSize(uri, (width, height) => {
         // console.log(`width: ${width}, height: ${height}`);
         console.log(`FULL_SIZE: ${FULL_SIZE}`);

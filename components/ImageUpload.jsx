@@ -18,6 +18,7 @@ const ImageUpload = ({navigation}) => {
                 const uid = user.uid;
                 setUserUid(uid);
             }
+        setFile(null);
         })
     }, [])
     const pickImage = async () => {

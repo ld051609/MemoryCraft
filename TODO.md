@@ -1,7 +1,7 @@
 [x] Upload the picture
 [x] Convert the picture into boxes
 [x] Redesign the puzzle page
-[] Set up the logic for uploading the image and playing puzzle
+[x] Set up the logic for uploading the image and playing puzzle
 [x] Design the UI for profile page
 [x] Set up how the image is uploaded
 [x] User authentication and authorization

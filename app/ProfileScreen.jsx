@@ -82,6 +82,10 @@ const ProfileScreen = ({navigation}) => {
       setError("Failed to upload image.");
     }
   };
+  const startPuzzle = (image) => {
+    console.log('Image props:', image);
+    navigation.navigate('Puzzle', {image });
+  }
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -118,8 +122,8 @@ const ProfileScreen = ({navigation}) => {
           {imageFiles.length > 0 ? (
             <View style={styles.gallery}>
               {imageFiles.map((image, index) => (
-                <TouchableOpacity key={index} onPress={() => navigation.navigate('Puzzle')}>
-                  <Image key={index} source={{ uri: image }} style={styles.galleryImage}/>
+                <TouchableOpacity key={index} onPress={() => startPuzzle(image)}>
+                  <Image source={{ uri: image }} style={styles.galleryImage}/>
 
                 </TouchableOpacity>
               ))}
